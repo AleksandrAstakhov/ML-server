@@ -14,6 +14,6 @@ print("\n Async Predict")
 os.system("python async_predict.py")
 
 print("\n Demo Operations")
-os.system("python demo_operations.py")
+os.system("python else_operations.py")
 
 print("\nAll tests completed.")
