@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./server
+    ports:
+      - "8000:8000"
+    environment:
+      - MODELS_DIR=/app/models
+    volumes:
+      - ./server/models:/app/models
+    restart: always
+
+  client:
+    build:
+      context: ./client
+    depends_on:
+      - server
+    restart: on-failure
