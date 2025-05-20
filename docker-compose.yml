@@ -1,20 +1,20 @@
-version: '3.8'
+version: '3.8'  # Используемая версия Docker Compose
 
 services:
   server:
     build:
-      context: ./server
+      context: ./server  # Путь к директории с Dockerfile для server
     ports:
-      - "5000:5000"
+      - "5000:5000"  # Проброс порта: внешний 5000 -> внутренний 5000
     environment:
-      - MODELS_DIR=/app/models
+      - MODELS_DIR=/app/models  # Переменная окружения внутри контейнера
     volumes:
-      - ./server/models:/app/models
-    restart: always
+      - ./server/models:/app/models  # Монтирование локальной папки моделей в контейнер
+    restart: always  # Контейнер будет перезапускаться всегда (в том числе при сбое и перезагрузке Docker)
 
   client:
     build:
-      context: ./client
+      context: ./client  # Путь к директории с Dockerfile для client
     depends_on:
-      - server
-    restart: on-failure
+      - server  # Зависимость: client стартует после server
+    restart: on-failure  # Перезапуск контейнера client только в случае сбоя
