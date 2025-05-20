@@ -1,7 +1,7 @@
 import aiohttp
 import asyncio
 import time
-from common_data import base_url, long_data
+from data import URL, data
 
 models = [
     {"name": "rf_async", "kind": "rf", "params": {"n_estimators": 100}},
@@ -9,8 +9,8 @@ models = [
 ]
 
 async def train_model(session, model):
-    url = f"{base_url}/fit"
-    async with session.post(url, json={**model, **long_data}) as response:
+    url = f"{URL}/fit"
+    async with session.post(url, json={**model, **data}) as response:
         text = await response.text()
         print(f"{model['name']} => {response.status} | {text}")
 

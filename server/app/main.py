@@ -37,7 +37,7 @@ class PredictRequest(ModelNameRequest):
 # ---------------- Async Model Registry ---------------- #
 
 
-class AsyncModelsRegistry:
+class ModelsRegistry:
     def __init__(self, path: str, max_loaded: int):
         self.path = path
         self.max_loaded = max_loaded
@@ -105,7 +105,7 @@ class AsyncModelsRegistry:
             return self.models[name]
 
 
-registry = AsyncModelsRegistry(MODELS_DIR, MAX_LOADED)
+registry = ModelsRegistry(MODELS_DIR, MAX_LOADED)
 
 # ---------------- Worker Function ---------------- #
 

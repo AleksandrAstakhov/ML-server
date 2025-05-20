@@ -1,12 +1,12 @@
 import aiohttp
 import asyncio
-from common_data import base_url, predict_data
+from data import URL, predict_data
 
 model_names = ["rf_long", "svc_long", "rf_async", "svc_async"]
 
 
 async def load_model(session, name):
-    r = await session.post(f"{base_url}/load", json={"name": name})
+    r = await session.post(f"{URL}/load", json={"name": name})
     if r.status == 200:
         print(f"{name} loaded.")
         return True
@@ -16,7 +16,7 @@ async def load_model(session, name):
 
 async def predict_model(session, name):
     r = await session.post(
-        f"{base_url}/predict",
+        f"{URL}/predict",
         json={"name": name, **predict_data},
     )
     if r.status == 200:
